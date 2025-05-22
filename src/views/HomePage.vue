@@ -1,7 +1,7 @@
 <template>
     <div class="home-page">
         <header class="header">
-            <div class="logo">
+            <div class="logo" @click="toIndexHandler">
                 <span class="logo-text">位运算大师</span>
             </div>
             <div class="nav-buttons">
@@ -107,6 +107,9 @@ function doResetProgress() {
     resetProgress();
     showResetConfirm.value = false;
 }
+function toIndexHandler() {
+    router.push({ name: 'home' });
+}
 </script>
 
 <style scoped>
@@ -126,6 +129,10 @@ function doResetProgress() {
     position: sticky;
     top: 0;
     z-index: 100;
+}
+
+.header .logo {
+    cursor: pointer;
 }
 
 .logo-text {

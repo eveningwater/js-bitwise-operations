@@ -10,6 +10,7 @@ export interface UserProgress {
   completedLevels: number[];
   currentLevel: number;
   lastVisit: string;
+  solution: string;
 }
 
 // 默认进度
@@ -17,6 +18,7 @@ const defaultProgress: UserProgress = {
   completedLevels: [],
   currentLevel: 1,
   lastVisit: new Date().toISOString(),
+  solution: "",
 };
 
 // 响应式进度状态
@@ -40,9 +42,10 @@ function loadProgress(): UserProgress {
 /**
  * 保存用户进度
  */
-function saveProgress() {
+function saveProgress(solution: string) {
   try {
     userProgress.value.lastVisit = new Date().toISOString();
+    userProgress.value.solution = solution;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(userProgress.value));
   } catch (error) {
     console.error("Failed to save progress:", error);
@@ -53,10 +56,10 @@ function saveProgress() {
  * 标记关卡为已完成
  * @param levelId 关卡ID
  */
-function completeLevel(levelId: number) {
+function completeLevel(levelId: number, solution: string) {
   if (!userProgress.value.completedLevels.includes(levelId)) {
     userProgress.value.completedLevels.push(levelId);
-    saveProgress();
+    saveProgress(solution);
   }
 }
 
@@ -64,9 +67,9 @@ function completeLevel(levelId: number) {
  * 设置当前关卡
  * @param levelId 关卡ID
  */
-function setCurrentLevel(levelId: number) {
+function setCurrentLevel(levelId: number, solution: string) {
   userProgress.value.currentLevel = levelId;
-  saveProgress();
+  saveProgress(solution);
 }
 
 /**
@@ -96,7 +99,7 @@ function getCurrentLevel(): number {
  */
 function resetProgress() {
   userProgress.value = { ...defaultProgress };
-  saveProgress();
+  saveProgress("");
 }
 
 export {

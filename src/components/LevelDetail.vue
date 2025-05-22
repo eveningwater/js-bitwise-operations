@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <div class="editor-container">
+                    <div class="editor-container" :key="code">
                         <Editor :value="code" :options="{
                             language: 'javascript',
                             theme: 'vs-dark',
@@ -171,12 +171,10 @@ const mobileView = ref('theory'); // 移动端视图状态：'theory' 或 'chall
 const highlightedSolution = ref('');
 const highlightedTheory = ref('');
 
-
-
 // 监听关卡变化，重置状态
 watch(() => props.levelId, () => {
     resetState();
-    setCurrentLevel(props.levelId);
+    setCurrentLevel(props.levelId, code.value);
 });
 
 // 高亮解决方案代码
@@ -230,6 +228,8 @@ const resetState = () => {
     hasRun.value = false;
     isCorrect.value = isLevelCompleted(props.levelId);
     resultMessage.value = '';
+    console.log(props.levelId, isLevelCompleted(props.levelId));
+    code.value = isCorrect.value ? currentLevel.value?.solution : currentLevel.value?.solutionTemplate || '';
     showHint.value = false;
     showSolution.value = false;
 
@@ -290,7 +290,7 @@ const runCode = () => {
         if (allPassed) {
             resultMessage.value = '恭喜！你的代码通过了所有测试用例！';
             // 标记关卡为已完成
-            completeLevel(props.levelId);
+            completeLevel(props.levelId, code.value);
         } else {
             const failedTest = testResults.find(result => !result!.passed);
             if (failedTest && 'error' in failedTest) {
@@ -346,7 +346,7 @@ const navigateToHome = () => {
 // 组件挂载时初始化
 onMounted(() => {
     resetState();
-    setCurrentLevel(props.levelId);
+    setCurrentLevel(props.levelId, "");
 
     // 高亮解决方案代码和理论内容
     highlightSolution();

@@ -17,7 +17,7 @@ const props = defineProps({
     },
 })
 const editor = ref<ReturnType<typeof loader.init> | null>(null);
-
+const editorInstance = ref<ReturnType<typeof monaco.editor.create> | null>(null);
 const emit = defineEmits(['update:value']);
 
 onMounted(() => {
@@ -26,13 +26,13 @@ onMounted(() => {
         if (!container.value) {
             return;
         }
-        const instance = monaco.editor.create(container.value!, {
+        editorInstance.value = monaco.editor.create(container.value!, {
             value: props.value,
             language: 'javascript',
             ...props.options,
         });
-        instance.onDidChangeModelContent(() => {
-            const value = instance?.getValue();
+        editorInstance.value.onDidChangeModelContent(() => {
+            const value = editorInstance.value?.getValue();
             if (value !== props.value) {
                 emit('update:value', value);
             }
