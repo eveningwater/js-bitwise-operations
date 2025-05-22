@@ -6,6 +6,7 @@
             </div>
             <div class="nav-buttons">
                 <button class="nav-button" @click="showAbout">关于</button>
+                <button class="github-button" @click="goToGithub">GitHub</button>
             </div>
         </header>
 
@@ -108,7 +109,16 @@ function doResetProgress() {
     showResetConfirm.value = false;
 }
 function toIndexHandler() {
-    router.push({ name: 'home' });
+    if (router.currentRoute.value.name === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        showingAbout.value = false;
+    } else {
+        router.push({ name: 'home' });
+    }
+}
+
+function goToGithub() {
+    window.open('https://github.com/eveningwater/js-bitwise-operations', '_blank');
 }
 </script>
 
@@ -157,6 +167,24 @@ function toIndexHandler() {
 
 .nav-button:hover {
     background: rgba(255, 126, 95, 0.2);
+    transform: translateY(-2px);
+}
+
+.github-button {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: 1rem;
+    /* Add some space between buttons */
+}
+
+.github-button:hover {
+    background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
 }
 
