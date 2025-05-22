@@ -1,49 +1,84 @@
 <template>
-    <div ref="container" class="monaco-editor-container"></div>
+    <div ref="editorRef" class="monaco-editor-container"></div>
 </template>
+
 <script setup lang="ts">
-import { onMounted, onUnmounted, PropType, ref } from 'vue'
-import * as monaco from 'monaco-editor';
+import {
+    onUnmounted,
+    defineEmits,
+    defineProps,
+    onMounted,
+    ref,
+    toRaw,
+    watch,
+    nextTick,
+    PropType
+} from "vue";
+
+import { debounce } from "lodash-es";
 import loader from "@monaco-editor/loader";
-const container = ref<HTMLElement | null>();
+import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
+
+const emits = defineEmits(["update:modelValue"]);
+
 const props = defineProps({
-    value: {
+    modelValue: {
         type: String,
-        default: ''
+        default: ""
     },
     options: {
         type: Object as PropType<monaco.editor.IStandaloneEditorConstructionOptions>,
         default: () => ({})
     },
-})
-const editor = ref<ReturnType<typeof loader.init> | null>(null);
-const editorInstance = ref<ReturnType<typeof monaco.editor.create> | null>(null);
-const emit = defineEmits(['update:value']);
-
-onMounted(() => {
-    editor.value = loader.init();
-    editor.value?.then((monaco) => {
-        if (!container.value) {
-            return;
-        }
-        editorInstance.value = monaco.editor.create(container.value!, {
-            value: props.value,
-            language: 'javascript',
-            ...props.options,
-        });
-        editorInstance.value.onDidChangeModelContent(() => {
-            const value = editorInstance.value?.getValue();
-            if (value !== props.value) {
-                emit('update:value', value);
-            }
-        })
-    })
-
 });
 
+
+const editorRef = ref<HTMLElement | null>(null);
+const editorLoader = ref<ReturnType<typeof loader.init> | null>(null);
+const editorInstance = ref<ReturnType<typeof monaco.editor.create> | null>(null);
+const debouncedUpdateModelValue = debounce(() => {
+    emits("update:modelValue", toRaw(editorInstance.value)!.getValue());
+}, 500);
+
+async function increment() {
+    await nextTick();
+    editorLoader.value = loader.init();
+    if (editorRef.value && !editorInstance.value) {
+        try {
+            const instance = await editorLoader.value;
+            editorInstance.value = instance.editor.create(editorRef.value!, {
+                value: props.modelValue,
+                language: "javascript",
+                ...props.options,
+            });
+            editorInstance.value.onDidChangeModelContent(() => {
+                debouncedUpdateModelValue();
+            });
+        } catch (error) {
+            console.error("Failed to load Monaco editor:", error);
+        }
+    }
+}
+
+onMounted(() => {
+    increment();
+});
+
+watch(
+    () => props.modelValue,
+    (newVal) => {
+        let currValue = toRaw(editorInstance.value)?.getValue();
+        if (newVal !== currValue) {
+            toRaw(editorInstance.value)?.setValue(newVal);
+        }
+    },
+    { deep: true }
+);
+
 onUnmounted(() => {
-    editor.value?.cancel();
-})
+    debouncedUpdateModelValue.cancel();
+    editorLoader.value?.cancel();
+});
 </script>
 <style scoped>
 .monaco-editor-container {

@@ -36,8 +36,8 @@
                         </div>
                     </div>
 
-                    <div class="editor-container" :key="code">
-                        <Editor :value="code" :options="{
+                    <div class="editor-container">
+                        <Editor v-model="code" :options="{
                             language: 'javascript',
                             theme: 'vs-dark',
                             automaticLayout: true,
@@ -47,7 +47,7 @@
                             lineNumbers: 'on',
                             renderLineHighlight: 'all',
                             tabSize: 2,
-                        }" @update:value="handleCodeChange" />
+                        }" />
                     </div>
                 </div>
 
@@ -134,7 +134,7 @@ import Editor from './Editor.vue';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import 'highlight.js/styles/atom-one-dark.css';
-import { debounce, isFunction } from 'lodash-es'; // 引入 lodash 的防抖函数
+import { isFunction } from 'lodash-es'; // 引入 lodash 的防抖函数
 
 // 注册JavaScript语言到highlight.js
 hljs.registerLanguage('javascript', javascript);
@@ -158,10 +158,7 @@ const currentLevel = computed(() => {
 // 状态
 const code = ref(currentLevel.value?.solutionTemplate || '');
 
-// 防抖处理编辑器内容变化
-const handleCodeChange = debounce((newValue: string) => {
-    code.value = newValue;
-}, 300);
+
 const hasRun = ref(false);
 const isCorrect = ref(false);
 const resultMessage = ref('');
@@ -228,7 +225,6 @@ const resetState = () => {
     hasRun.value = false;
     isCorrect.value = isLevelCompleted(props.levelId);
     resultMessage.value = '';
-    console.log(props.levelId, isLevelCompleted(props.levelId));
     code.value = isCorrect.value ? currentLevel.value?.solution : currentLevel.value?.solutionTemplate || '';
     showHint.value = false;
     showSolution.value = false;
