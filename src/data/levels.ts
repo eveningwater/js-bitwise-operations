@@ -51,7 +51,7 @@ console.log(parseInt(binary, 2)); // 输出: 10
       "编写一个函数，接收一个十进制整数作为参数，返回它的二进制表示形式（字符串）。不要使用内置的toString方法。",
     hint: "可以使用除以2取余数的方法，将余数存入数组，最后反转数组并连接成字符串。",
     solution: `function decimalToBinary(num) {
-  if (num === '0') return "0";
+  if (+num === 0) return "0";
   
   let binary = [];
   let temp = Math.abs(num);
