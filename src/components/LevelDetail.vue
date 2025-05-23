@@ -135,6 +135,9 @@ import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import 'highlight.js/styles/atom-one-dark.css';
 import { isFunction } from 'lodash-es'; // 引入 lodash 的防抖函数
+import { parseStr } from 'ew-responsive-store';
+import { parseStrType } from 'ew-responsive-store/typings/core/enum';
+
 
 // 注册JavaScript语言到highlight.js
 hljs.registerLanguage('javascript', javascript);
@@ -261,7 +264,17 @@ const runCode = () => {
                 if (!isFunction(userFunction)) {
                     return;
                 }
-                const result = userFunction(testCase.input);
+                let result;
+                if (testCase.input.includes('[')) {
+                    const params = parseStr(testCase.input!, "json" as parseStrType);
+                    result = userFunction(params);
+                } else if (testCase.input.includes(',')) {
+                    const params = testCase.input!.split(',');
+                    result = userFunction(...params);
+                } else {
+                    result = userFunction(testCase.input!);
+                }
+                console.log('result', result);
                 // 比较结果
                 const passed = compareResults(result, testCase.expected);
 
@@ -447,6 +460,7 @@ onBeforeUnmount(() => {
     border-radius: 8px;
     margin: 1rem 0;
     overflow-x: auto;
+    max-width: 100%;
 }
 
 .challenge-description {
