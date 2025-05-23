@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunkjs_bitwise_operations=self.webpackChunkjs_bitwise_operations||[]).push([["82"],{525:function(u,F,e){e.d(F,{U:()=>E});let E=[{id:1,name:"位运算基础",icon:"&",theory:`
+"use strict";(self.webpackChunkjs_bitwise_operations=self.webpackChunkjs_bitwise_operations||[]).push([["82"],{525:function(u,F,E){E.d(F,{U:()=>e});let e=[{id:1,name:"位运算基础",icon:"&",theory:`
       <h3>\u{4E8C}\u{8FDB}\u{5236}\u{57FA}\u{7840}</h3>
       <p>\u{5728}\u{8BA1}\u{7B97}\u{673A}\u{4E2D}\u{FF0C}\u{6240}\u{6709}\u{6570}\u{636E}\u{90FD}\u{4EE5}\u{4E8C}\u{8FDB}\u{5236}\u{5F62}\u{5F0F}\u{5B58}\u{50A8}\u{3002}\u{4E8C}\u{8FDB}\u{5236}\u{53EA}\u{6709}0\u{548C}1\u{4E24}\u{4E2A}\u{6570}\u{5B57}\u{FF0C}\u{5206}\u{522B}\u{4EE3}\u{8868}\u{5173}(off)\u{548C}\u{5F00}(on)\u{3002}</p>
       <p>\u{5341}\u{8FDB}\u{5236}\u{6570}\u{5B57}\u{8F6C}\u{6362}\u{4E3A}\u{4E8C}\u{8FDB}\u{5236}\u{7684}\u{65B9}\u{6CD5}\u{662F}\u{4E0D}\u{65AD}\u{9664}\u{4EE5}2\u{FF0C}\u{8BB0}\u{5F55}\u{4F59}\u{6570}\u{FF0C}\u{7136}\u{540E}\u{4ECE}\u{4E0B}\u{5F80}\u{4E0A}\u{8BFB}\u{53D6}\u{4F59}\u{6570}\u{3002}\u{4F8B}\u{5982}\u{FF1A}</p>
@@ -22,7 +22,7 @@ const binary = "1010";
 console.log(parseInt(binary, 2)); // \u{8F93}\u{51FA}: 10
       </code></pre>
     `,challenge:"编写一个函数，接收一个十进制整数作为参数，返回它的二进制表示形式（字符串）。不要使用内置的toString方法。",hint:"可以使用除以2取余数的方法，将余数存入数组，最后反转数组并连接成字符串。",solution:`function decimalToBinary(num) {
-  if (num === '0') return "0";
+  if (+num === 0) return "0";
   
   let binary = [];
   let temp = Math.abs(num);
@@ -271,4 +271,4 @@ console.log(parseInt(binary, 2)); // \u{8F93}\u{51FA}: 10
     `,challenge:"编写一个函数，接收两个整数作为参数，返回它们的平均值（向下取整）。使用位运算实现，避免可能的溢出问题。",hint:"可以使用 (a & b) + ((a ^ b) >> 1) 计算平均值，这种方法可以避免 (a + b) / 2 可能导致的溢出问题。",solution:`function average(a, b) {
   // \u{4F7F}\u{7528}\u{4F4D}\u{8FD0}\u{7B97}\u{8BA1}\u{7B97}\u{5E73}\u{5747}\u{503C}\u{FF0C}\u{907F}\u{514D}\u{6EA2}\u{51FA}
   return (a & b) + ((a ^ b) >> 1);
-}`,testCases:[{input:"10, 20",expected:15},{input:"5, 6",expected:5},{input:"0, 0",expected:0},{input:"-5, 5",expected:0}]}];E.forEach(u=>{let F=u.solution.match(/function\s+\w+\s*\(.*?\)\s*{/);F&&F[0]&&(u.solutionTemplate=F[0]+"\n    //...这里实现代码\n}")})},223:function(u,F,e){e.d(F,{Gk:()=>A,bo:()=>n,ew:()=>o,qY:()=>t,xC:()=>p,xQ:()=>i});var E=e(770);let D="js-bitwise-operations-progress",B={completedLevels:[],currentLevel:1,lastVisit:new Date().toISOString(),solution:""},n=(0,E.iH)(function(){try{let u=localStorage.getItem(D);if(u)return JSON.parse(u)}catch(u){console.error("Failed to load progress:",u)}return{...B}}());function C(u){try{n.value.lastVisit=new Date().toISOString(),n.value.solution=u,localStorage.setItem(D,JSON.stringify(n.value))}catch(u){console.error("Failed to save progress:",u)}}function t(u,F){n.value.completedLevels.includes(u)||(n.value.completedLevels.push(u),C(F))}function p(u,F){n.value.currentLevel=u,C(F)}function o(u){return n.value.completedLevels.includes(u)}function A(){return[...n.value.completedLevels]}function i(){n.value={...B},C("")}}}]);
+}`,testCases:[{input:"10, 20",expected:15},{input:"5, 6",expected:5},{input:"0, 0",expected:0},{input:"-5, 5",expected:0}]}];e.forEach(u=>{let F=u.solution.match(/function\s+\w+\s*\(.*?\)\s*{/);F&&F[0]&&(u.solutionTemplate=F[0]+"\n    //...这里实现代码\n}")})},223:function(u,F,E){E.d(F,{Gk:()=>A,bo:()=>B,ew:()=>p,qY:()=>C,xC:()=>t,xQ:()=>i});var e=E(963);let D={completedLevels:[],currentLevel:1,lastVisit:new Date().toISOString(),solution:""},B=(0,e.y$)("js-bitwise-operations-progress",D);function n(u){B.value.lastVisit=new Date().toISOString(),B.value.solution=u}function C(u,F){B.value.completedLevels.includes(u)||(B.value.completedLevels.push(u),n(F))}function t(u,F){B.value.currentLevel=u,n(F)}function p(u){return B.value.completedLevels.includes(u)}function A(){return[...B.value.completedLevels]}function i(){B.value={...D},n("")}}}]);
