@@ -1,6 +1,6 @@
 // 进度管理服务
 
-import { ref } from "vue";
+import { useStorage } from "ew-responsive-store";
 
 // 本地存储键名
 const STORAGE_KEY = "js-bitwise-operations-progress";
@@ -22,34 +22,14 @@ const defaultProgress: UserProgress = {
 };
 
 // 响应式进度状态
-const userProgress = ref<UserProgress>(loadProgress());
-
-/**
- * 加载用户进度
- */
-function loadProgress(): UserProgress {
-  try {
-    const savedProgress = localStorage.getItem(STORAGE_KEY);
-    if (savedProgress) {
-      return JSON.parse(savedProgress);
-    }
-  } catch (error) {
-    console.error("Failed to load progress:", error);
-  }
-  return { ...defaultProgress };
-}
+const userProgress = useStorage<UserProgress>(STORAGE_KEY, defaultProgress);
 
 /**
  * 保存用户进度
  */
 function saveProgress(solution: string) {
-  try {
-    userProgress.value.lastVisit = new Date().toISOString();
-    userProgress.value.solution = solution;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(userProgress.value));
-  } catch (error) {
-    console.error("Failed to save progress:", error);
-  }
+  userProgress.value.lastVisit = new Date().toISOString();
+  userProgress.value.solution = solution;
 }
 
 /**
