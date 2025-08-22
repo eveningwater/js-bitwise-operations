@@ -1,190 +1,194 @@
-# 位运算大师：JavaScript 位运算游戏化教程系统
+# Bitwise Master: JavaScript Bitwise Operations Gamified Tutorial System
 
-## 项目概述
+## Project Overview
 
-**位运算大师**是一个纯前端的、游戏化的 JavaScript 位运算学习平台。通过互动式的关卡设计和即时反馈，帮助用户（特别是前端开发者和初学者）快速理解和掌握 JavaScript 中的位运算符及其应用。
+**Bitwise Master** is a pure frontend, gamified JavaScript bitwise operations learning platform. Through interactive level design and instant feedback, it helps users (especially frontend developers and beginners) quickly understand and master JavaScript bitwise operators and their applications.
 
-位运算是直接对二进制位进行操作的运算，在 JavaScript 中可以用于处理整数的二进制表示。虽然位运算在日常开发中使用频率不高，但在特定场景下（如权限控制、性能优化、图形处理等）具有不可替代的作用。然而，由于其抽象性和不直观性，许多开发者对位运算望而却步。
+Bitwise operations are operations that directly manipulate binary bits. In JavaScript, they can be used to process binary representations of integers. Although bitwise operations are not frequently used in daily development, they play an irreplaceable role in specific scenarios (such as permission control, performance optimization, graphics processing, etc.). However, due to their abstract nature and lack of intuitiveness, many developers shy away from bitwise operations.
 
-本项目旨在通过游戏化的方式，将抽象的位运算概念具象化，让学习过程变得有趣且高效。通过完成一系列由浅入深的关卡挑战，用户可以逐步掌握各种位运算符的用法和应用场景，最终能够自信地在实际项目中应用位运算技巧。
+This project aims to concretize abstract bitwise operation concepts through gamification, making the learning process both interesting and efficient. By completing a series of progressive level challenges, users can gradually master the usage and application scenarios of various bitwise operators, ultimately gaining confidence in applying bitwise operation techniques in real projects.
 
-## 目标用户
+## Target Users
 
-- **对 JavaScript 位运算感到困惑或不熟悉的前端开发者**：希望通过系统学习掌握位运算知识，提升编程技能。
-- **希望通过实践和互动方式学习新知识的学生或自学者**：偏好游戏化、互动式学习体验，而非传统的文档阅读方式。
-- **需要在特定场景中应用位运算的开发者**：如需要实现权限控制、优化性能、处理图形等场景的开发人员。
-- **编程教育工作者**：可以将本平台作为教学辅助工具，帮助学生理解位运算概念。
+- **Frontend developers who are confused or unfamiliar with JavaScript bitwise operations**: Hope to master bitwise operation knowledge through systematic learning and improve programming skills.
+- **Students or self-learners who prefer to learn new knowledge through practice and interaction**: Prefer gamified, interactive learning experiences over traditional document reading.
+- **Developers who need to apply bitwise operations in specific scenarios**: Such as those who need to implement permission control, optimize performance, process graphics, etc.
+- **Programming educators**: Can use this platform as a teaching aid to help students understand bitwise operation concepts.
 
-## 核心功能
+## Core Features
 
-### 1. 互动式关卡
+### 1. Interactive Levels
 
-本系统设计了一系列由易到难的关卡，每个关卡聚焦一个或多个位运算符（如 `&`, `|`, `^`, `~`, `<<`, `>>`, `>>>`）。关卡内容包括：
+The system designs a series of progressive levels from easy to difficult, each focusing on one or more bitwise operators (such as `&`, `|`, `^`, `~`, `<<`, `>>`, `>>>`). Level content includes:
 
-- **理论知识讲解**：简洁易懂的位运算原理介绍，配合可视化的二进制表示。
-- **编程挑战**：具体的位运算问题，要求用户编写 JavaScript 代码解决。
-- **测试用例**：每个关卡包含多个测试用例，用于验证用户代码的正确性。
-- **提示系统**：当用户遇到困难时，可以查看提示获取解题思路。
-- **参考解答**：用户可以在尝试后查看标准解答，加深理解。
+- **Theoretical Knowledge**: Clear and easy-to-understand introduction to bitwise operation principles, accompanied by visual binary representations.
+- **Programming Challenges**: Specific bitwise operation problems that require users to write JavaScript code to solve.
+- **Test Cases**: Each level contains multiple test cases to verify the correctness of user code.
+- **Hint System**: When users encounter difficulties, they can view hints to get problem-solving ideas.
+- **Reference Solutions**: Users can view standard solutions after attempting, deepening their understanding.
 
-关卡设计遵循渐进式学习原则，从基础的位运算符开始，逐步引入复杂的应用场景，确保用户能够循序渐进地掌握知识点。
+Level design follows progressive learning principles, starting from basic bitwise operators and gradually introducing complex application scenarios, ensuring users can master knowledge points step by step.
 
-### 2. 实时反馈
+### 2. Real-time Feedback
 
-用户提交代码后，系统会立即评估其正确性，并提供详细的反馈：
+After users submit code, the system immediately evaluates its correctness and provides detailed feedback:
 
-- **测试结果展示**：显示每个测试用例的输入、期望输出和实际输出。
-- **错误提示**：当代码执行出错或结果不符合预期时，提供具体的错误信息。
-- **成功反馈**：当所有测试用例通过时，给予积极的鼓励和下一步引导。
-- **代码执行**：使用安全的方式执行用户代码，避免潜在的安全风险。
+- **Test Result Display**: Shows input, expected output, and actual output for each test case.
+- **Error Hints**: When code execution errors or results don't meet expectations, provides specific error information.
+- **Success Feedback**: When all test cases pass, gives positive encouragement and next-step guidance.
+- **Code Execution**: Uses safe methods to execute user code, avoiding potential security risks.
 
-这种即时反馈机制能够帮助用户快速定位问题，调整思路，提高学习效率。
+This instant feedback mechanism helps users quickly locate problems, adjust their thinking, and improve learning efficiency.
 
-### 3. 知识点讲解
+### 3. Knowledge Point Explanation
 
-每个关卡都包含相关位运算符的理论讲解，内容包括：
+Each level contains theoretical explanations of related bitwise operators, including:
 
-- **运算符基本原理**：详细解释位运算符的工作原理和二进制表示。
-- **可视化示例**：通过二进制位的可视化展示，直观呈现位运算的过程。
-- **实际应用场景**：介绍该位运算符在实际开发中的应用场景和使用技巧。
-- **性能考量**：在适当的情况下，说明位运算相比传统运算的性能优势。
+- **Basic Operator Principles**: Detailed explanation of how bitwise operators work and their binary representations.
+- **Visual Examples**: Intuitive presentation of bitwise operation processes through visual binary bit displays.
+- **Practical Application Scenarios**: Introduction to application scenarios and usage tips of the bitwise operator in real development.
+- **Performance Considerations**: In appropriate cases, explains performance advantages of bitwise operations compared to traditional operations.
 
-知识点讲解采用浅显易懂的语言，配合丰富的示例，确保即使是零基础的用户也能理解位运算的概念。
+Knowledge point explanations use simple and understandable language, combined with rich examples, ensuring even zero-basic users can understand bitwise operation concepts.
 
-### 4. 进度保存
+### 4. Progress Saving
 
-系统会自动记录用户的学习进度，包括：
+The system automatically records user learning progress, including:
 
-- **已完成关卡**：记录用户已经通过的关卡，在界面上用标记显示。
-- **当前关卡**：记住用户上次学习的位置，方便下次继续学习。
-- **访问时间**：记录用户最后一次访问的时间，用于数据分析。
+- **Completed Levels**: Records levels that users have passed, displayed with markers on the interface.
+- **Current Level**: Remembers the user's last learning position, convenient for continuing next time.
+- **Access Time**: Records the time of the user's last visit for data analysis.
 
-进度数据使用浏览器的 localStorage 存储，无需登录即可保存学习记录，保证了使用的便捷性和隐私性。
+Progress data uses browser localStorage, no login required to save learning records, ensuring convenience and privacy.
 
-### 5. 用户界面
+### 5. User Interface
 
-系统采用现代化、游戏感十足的界面设计：
+The system adopts a modern, game-like interface design:
 
-- **响应式布局**：适配不同尺寸的设备，包括桌面电脑、平板和手机。
-- **直观的导航**：清晰的关卡列表和进度展示，方便用户选择学习内容。
-- **代码编辑器**：集成高质量的代码编辑器，支持语法高亮、自动补全等功能。
-- **主题设计**：采用深色主题，减轻长时间学习的视觉疲劳。
-- **动画效果**：适当的动画和过渡效果，提升用户体验。
+- **Responsive Layout**: Adapts to devices of different sizes, including desktop computers, tablets, and phones.
+- **Intuitive Navigation**: Clear level lists and progress display, convenient for users to choose learning content.
+- **Code Editor**: Integrates high-quality code editor with syntax highlighting, auto-completion, and other features.
+- **Theme Design**: Uses dark theme to reduce visual fatigue during long learning sessions.
+- **Animation Effects**: Appropriate animations and transition effects to enhance user experience.
 
-界面设计注重简洁性和功能性，避免过多的干扰元素，让用户能够专注于学习内容。
+Interface design focuses on simplicity and functionality, avoiding excessive distracting elements, allowing users to focus on learning content.
 
-## 技术实现
+## Technical Implementation
 
-### 前端技术栈
+### Frontend Technology Stack
 
-- **Vue 3**：采用 Vue 3 框架构建用户界面，利用其响应式特性和组件化开发模式。
-- **TypeScript**：使用 TypeScript 进行类型检查，提高代码质量和开发效率。
-- **Monaco Editor**：集成 Monaco Editor（VS Code 的编辑器组件）作为代码编辑器，提供专业的编码体验。
-- **Highlight.js**：用于代码语法高亮，增强理论讲解和解答展示的可读性。
-- **LocalStorage API**：利用浏览器的 LocalStorage 实现进度保存功能。
-- **CSS3**：使用现代 CSS 技术实现响应式布局和动画效果。
+- **Vue 3**: Uses Vue 3 framework to build user interface, leveraging its reactive features and component-based development model.
+- **TypeScript**: Uses TypeScript for type checking, improving code quality and development efficiency.
+- **Monaco Editor**: Integrates Monaco Editor (VS Code's editor component) as code editor, providing professional coding experience.
+- **Highlight.js**: Used for code syntax highlighting, enhancing readability of theoretical explanations and solution displays.
+- **LocalStorage API**: Uses browser's LocalStorage to implement progress saving functionality.
+- **CSS3**: Uses modern CSS technology to implement responsive layout and animation effects.
 
-### 核心模块
+### Core Modules
 
-1. **关卡数据模块**：定义关卡结构和内容，包括理论知识、挑战描述、测试用例等。
-2. **代码执行模块**：安全地执行用户代码，并与测试用例进行比对。
-3. **进度管理模块**：处理用户进度的保存和读取，确保学习连贯性。
-4. **UI 组件模块**：实现各种交互组件，如关卡卡片、代码编辑器、结果展示等。
-5. **路由模块**：管理页面导航和 URL 映射，实现单页应用的无刷新切换。
+1. **Level Data Module**: Defines level structure and content, including theoretical knowledge, challenge descriptions, test cases, etc.
+2. **Code Execution Module**: Safely executes user code and compares it with test cases.
+3. **Progress Management Module**: Handles saving and reading of user progress, ensuring learning continuity.
+4. **UI Component Module**: Implements various interactive components such as level cards, code editors, result displays, etc.
+5. **Routing Module**: Manages page navigation and URL mapping, implementing seamless switching of single-page applications.
 
-### 安全考量
+### Security Considerations
 
-由于系统需要执行用户输入的代码，安全性是一个重要考量：
+Since the system needs to execute user-input code, security is an important consideration:
 
-- 使用 `new Function()` 而非 `eval()` 执行用户代码，减少安全风险。
-- 限制代码执行环境，防止恶意代码访问敏感 API。
-- 设置超时机制，防止无限循环等导致的浏览器崩溃。
+- Uses `new Function()` instead of `eval()` to execute user code, reducing security risks.
+- Limits code execution environment, preventing malicious code from accessing sensitive APIs.
+- Sets timeout mechanisms to prevent browser crashes caused by infinite loops.
 
-## 如何使用
+## How to Use
 
-### 开始游戏
+### Start the Game
 
-1. 打开应用首页，你将看到欢迎界面和关卡列表。
-2. 首页显示你的总体学习进度，以及已完成的关卡数量。
-3. 点击"开始学习"按钮，或直接选择一个关卡卡片进入学习。
+1. Open the application homepage, you'll see a welcome interface and level list.
+2. The homepage displays your overall learning progress and the number of completed levels.
+3. Click the "Start Learning" button, or directly select a level card to enter learning.
 
-### 选择关卡
+### Choose Levels
 
-1. 关卡按照难度递增的顺序排列，建议按顺序学习。
-2. 已完成的关卡会有特殊标记，你可以随时回顾之前的内容。
-3. 未解锁的关卡（需要完成前置关卡）会有明显提示。
+1. Levels are arranged in order of increasing difficulty, recommended to learn in sequence.
+2. Completed levels will have special markers, you can review previous content anytime.
+3. Unlocked levels (requiring completion of prerequisite levels) will have clear prompts.
 
-### 理解挑战
+### Understand Challenges
 
-1. 进入关卡后，首先阅读左侧的理论知识部分，了解相关位运算符的基本原理。
-2. 查看挑战描述，明确当前关卡的任务要求。
-3. 观察测试用例，理解输入和期望输出的关系。
+1. After entering a level, first read the theoretical knowledge section on the left to understand the basic principles of related bitwise operators.
+2. View the challenge description to clarify the current level's task requirements.
+3. Observe test cases to understand the relationship between input and expected output.
 
-### 编写代码
+### Write Code
 
-1. 在代码编辑器中编写你的解决方案。
-2. 编辑器支持语法高亮和基本的代码补全功能。
-3. 如果遇到困难，可以点击"提示"按钮获取解题思路。
+1. Write your solution in the code editor.
+2. The editor supports syntax highlighting and basic code completion features.
+3. If you encounter difficulties, you can click the "Hint" button to get problem-solving ideas.
 
-### 提交答案
+### Submit Answers
 
-1. 完成代码编写后，点击"运行"按钮提交你的答案。
-2. 系统会立即执行你的代码，并与测试用例进行比对。
-3. 等待反馈结果，查看是否通过所有测试。
+1. After completing code writing, click the "Run" button to submit your answer.
+2. The system will immediately execute your code and compare it with test cases.
+3. Wait for feedback results to see if all tests pass.
 
-### 查看反馈
+### View Feedback
 
-1. 如果所有测试通过，你将看到成功提示，并自动解锁下一关。
-2. 如果有测试未通过，系统会显示具体的错误信息，帮助你调试。
-3. 你可以根据反馈修改代码，然后再次提交。
-4. 如果多次尝试仍未成功，可以点击"查看解答"按钮学习标准解法。
+1. If all tests pass, you'll see a success prompt and automatically unlock the next level.
+2. If some tests fail, the system will display specific error information to help you debug.
+3. You can modify your code based on feedback and submit again.
+4. If you still haven't succeeded after multiple attempts, you can click "View Solution" to learn the standard solution.
 
-### 继续学习
+### Continue Learning
 
-1. 完成当前关卡后，可以点击"下一关"按钮继续学习。
-2. 你也可以随时点击"返回首页"查看总体进度或选择其他关卡。
-3. 你的学习进度会自动保存，下次访问时可以继续之前的学习。
+1. After completing the current level, you can click "Next Level" to continue learning.
+2. You can also click "Return to Home" anytime to view overall progress or choose other levels.
+3. Your learning progress is automatically saved, and you can continue previous learning when you visit next time.
 
-## 关卡内容概览
+## Level Content Overview
 
-本系统目前包含以下关卡，涵盖了 JavaScript 中所有的位运算符和常见应用场景：
+The system currently contains the following levels, covering all bitwise operators in JavaScript and common application scenarios:
 
-1. **位运算基础**：介绍二进制表示和位运算的基本概念。
-2. **按位与（&）**：学习按位与运算符的用法和应用场景。
-3. **按位或（|）**：掌握按位或运算符，以及如何使用它合并标志位。
-4. **按位异或（^）**：探索异或运算的特性和实际应用。
-5. **按位非（~）**：了解按位非运算符及其在 JavaScript 中的特殊行为。
-6. **左移（<<）**：学习左移运算及其在乘法中的应用。
-7. **右移（>>）**：掌握有符号右移运算的原理和使用方法。
-8. **无符号右移（>>>）**：了解无符号右移与有符号右移的区别。
-9. **位掩码应用**：学习如何使用位运算实现高效的权限控制。
-10. **位运算技巧**：掌握一些实用的位运算技巧和算法优化方法。
+1. **Bitwise Basics**: Introduces binary representation and basic concepts of bitwise operations.
+2. **Bitwise AND (&)**: Learn the usage and application scenarios of the bitwise AND operator.
+3. **Bitwise OR (|)**: Master the bitwise OR operator and how to use it to merge flag bits.
+4. **Bitwise XOR (^)**: Explore the characteristics and practical applications of XOR operations.
+5. **Bitwise NOT (~)**: Understand the bitwise NOT operator and its special behavior in JavaScript.
+6. **Left Shift (<<)**: Learn left shift operations and their applications in multiplication.
+7. **Right Shift (>>)**: Master the principles and usage of signed right shift operations.
+8. **Unsigned Right Shift (>>>)**: Understand the difference between unsigned and signed right shift.
+9. **Bitmask Applications**: Learn how to use bitwise operations to implement efficient permission control.
+10. **Bitwise Tricks**: Master some practical bitwise operation techniques and algorithm optimization methods.
 
-每个关卡都设计了多个测试用例，覆盖了不同的输入情况和边界条件，确保用户全面理解知识点。
+Each level designs multiple test cases, covering different input situations and boundary conditions, ensuring users comprehensively understand knowledge points.
 
-## 技术亮点
+## Technical Highlights
 
-1. **游戏化学习体验**：将枯燥的位运算知识转化为有趣的闯关游戏，提高学习动力。
-2. **即时反馈机制**：用户提交代码后立即得到反馈，加速学习循环。
-3. **可视化展示**：通过二进制位的可视化表示，直观展示位运算的过程。
-4. **渐进式学习路径**：关卡设计遵循认知规律，由浅入深，确保学习效果。
-5. **无后端架构**：纯前端实现，无需服务器支持，部署简单，访问便捷。
-6. **响应式设计**：适配各种设备，用户可以在任何场景下学习。
-7. **本地进度保存**：无需登录即可保存学习进度，保护用户隐私。
+1. **Gamified Learning Experience**: Transforms boring bitwise operation knowledge into interesting level-based games, improving learning motivation.
+2. **Instant Feedback Mechanism**: Users get immediate feedback after submitting code, accelerating learning cycles.
+3. **Visual Display**: Intuitively displays bitwise operation processes through visual binary bit representations.
+4. **Progressive Learning Path**: Level design follows cognitive laws, from shallow to deep, ensuring learning effectiveness.
+5. **Backend-free Architecture**: Pure frontend implementation, no server support required, simple deployment, convenient access.
+6. **Responsive Design**: Adapts to various devices, users can learn in any scenario.
+7. **Local Progress Saving**: No login required to save learning progress, protecting user privacy.
 
-## 未来规划
+## Future Plans
 
-1. **增加更多高级关卡**：添加更复杂的位运算应用场景和算法题。
-2. **引入排行榜功能**：增加竞争元素，提高用户参与度（需要后端支持）。
-3. **添加用户自定义关卡**：允许用户创建和分享自己设计的关卡。
-4. **提供多语言支持**：增加英语等其他语言版本，扩大受众范围。
-5. **增强可视化效果**：提供更直观的位运算过程动画展示。
-6. **添加社区讨论功能**：允许用户分享解法和讨论优化方案。
+1. **Add More Advanced Levels**: Add more complex bitwise operation application scenarios and algorithm problems.
+2. **Introduce Leaderboard Functionality**: Add competitive elements to improve user engagement (requires backend support).
+3. **Add User Custom Levels**: Allow users to create and share their own designed levels.
+4. **Provide Multi-language Support**: Add English and other language versions to expand audience reach.
+5. **Enhance Visual Effects**: Provide more intuitive bitwise operation process animation displays.
+6. **Add Community Discussion Features**: Allow users to share solutions and discuss optimization methods.
 
-## 总结
+## Summary
 
-**位运算大师**是一个创新的、游戏化的 JavaScript 位运算学习平台，通过精心设计的关卡和即时反馈机制，帮助用户轻松掌握位运算知识。无论你是位运算新手，还是希望巩固已有知识的开发者，都能在这个平台上获得愉快而高效的学习体验。
+**Bitwise Master** is an innovative, gamified JavaScript bitwise operations learning platform that helps users easily master bitwise operation knowledge through carefully designed levels and instant feedback mechanisms. Whether you're a bitwise operation beginner or a developer hoping to consolidate existing knowledge, you can gain a pleasant and efficient learning experience on this platform.
 
-位运算虽然在日常开发中使用频率不高，但掌握这一技能不仅能够应对特定场景的需求，还能拓展编程思维，提升整体编程能力。通过完成本系统的所有关卡，你将能够自信地在实际项目中应用位运算技巧，成为真正的"位运算大师"。
+Although bitwise operations are not frequently used in daily development, mastering this skill not only meets the needs of specific scenarios but also expands programming thinking and improves overall programming ability. By completing all levels of this system, you'll be able to confidently apply bitwise operation techniques in real projects, becoming a true "Bitwise Master".
 
-开始你的位运算学习之旅吧！
+Start your bitwise operations learning journey now!
+
+---
+
+[English](README.md) | [中文](README.zh.md)
