@@ -381,16 +381,164 @@ function goToGithub() {
 }
 
 @media (max-width: 768px) {
+    .header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .logo-text {
+        font-size: 1.5rem;
+    }
+
+    .nav-buttons {
+        display: flex;
+        gap: 0.5rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nav-button,
+    .github-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        margin-left: 0;
+        flex: 1;
+        max-width: 120px;
+    }
+
+    .main-content {
+        padding: 0 1rem;
+    }
+
+    .welcome-section {
+        min-height: 70vh;
+        padding: 1.5rem 0;
+    }
+
     .title {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.2;
     }
 
     .subtitle {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+
+    .progress-container {
+        margin: 1.5rem 1rem;
+        width: calc(100% - 2rem);
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-top: 1.5rem;
+        padding: 0 1rem;
+        width: 100%;
+    }
+
+    .cta-button,
+    .reset-button {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-radius: 10px;
+    }
+
+    .levels-section {
+        padding: 2rem 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
     }
 
     .levels-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .footer {
+        padding: 1.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* 移动端模态框优化 */
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .modal-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .modal-content p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-top: 1.5rem;
+    }
+
+    .cancel-button,
+    .confirm-button {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0.8rem;
+    }
+
+    .logo-text {
+        font-size: 1.3rem;
+    }
+
+    .nav-button,
+    .github-button {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+        max-width: 100px;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .cta-button,
+    .reset-button {
+        padding: 0.9rem;
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .levels-grid {
+        gap: 1rem;
     }
 }
 </style>

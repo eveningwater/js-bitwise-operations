@@ -299,17 +299,162 @@ defineEmits<{
 }
 
 @media (max-width: 768px) {
+    .about-page {
+        padding: 1.5rem 1rem;
+    }
+
+    .about-title {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .about-section {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .about-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .about-section p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
     .operator-card {
         flex-direction: column;
+        margin-bottom: 1.2rem;
     }
 
     .operator-symbol {
         width: 100%;
         padding: 1rem 0;
+        font-size: 2rem;
+    }
+
+    .operator-info {
+        padding: 1.2rem;
+    }
+
+    .operator-info h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .operator-example {
+        margin-top: 0.8rem;
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .operator-example code {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+        word-break: break-all;
+        overflow-wrap: break-word;
+    }
+
+    .binary-explanation {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .application-list {
+        padding-left: 1.2rem;
+    }
+
+    .application-list li {
+        margin-bottom: 0.8rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .back-button-container {
+        margin-top: 2rem;
+    }
+
+    .back-button {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-page {
+        padding: 1rem 0.8rem;
     }
 
     .about-title {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .about-section {
+        padding: 1.2rem;
+        margin-bottom: 1.2rem;
+        border-radius: 12px;
+    }
+
+    .about-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .about-section p {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    .operator-card {
+        margin-bottom: 1rem;
+        border-radius: 10px;
+    }
+
+    .operator-symbol {
+        padding: 0.8rem 0;
+        font-size: 1.8rem;
+    }
+
+    .operator-info {
+        padding: 1rem;
+    }
+
+    .operator-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .operator-example {
+        margin-top: 0.6rem;
+        padding: 0.6rem;
+        font-size: 0.85rem;
+    }
+
+    .operator-example code {
+        font-size: 0.9rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .binary-explanation {
+        font-size: 0.8rem;
+    }
+
+    .application-list {
+        padding-left: 1rem;
+    }
+
+    .application-list li {
+        margin-bottom: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .back-button {
+        padding: 0.9rem;
+        font-size: 1rem;
     }
 }
 </style>

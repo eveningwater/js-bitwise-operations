@@ -83,5 +83,32 @@ onUnmounted(() => {
 <style scoped>
 .monaco-editor-container {
     max-width: 1000px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .monaco-editor-container {
+        max-width: 100%;
+        min-width: 100%;
+        overflow-x: auto;
+    }
+    
+    /* 确保Monaco编辑器在移动端有正确的滚动行为 */
+    .monaco-editor-container :deep(.monaco-editor) {
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+    
+    .monaco-editor-container :deep(.monaco-editor .overflow-guard) {
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+    
+    .monaco-editor-container :deep(.monaco-editor .monaco-scrollable-element) {
+        overflow-x: auto;
+        overflow-y: auto;
+    }
 }
 </style>

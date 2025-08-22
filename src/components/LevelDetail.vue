@@ -452,6 +452,9 @@ onBeforeUnmount(() => {
 
 .theory-content {
     line-height: 1.6;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .theory-content :deep(pre) {
@@ -466,6 +469,9 @@ onBeforeUnmount(() => {
 .challenge-description {
     margin-bottom: 1.5rem;
     line-height: 1.6;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .code-editor {
@@ -540,6 +546,9 @@ onBeforeUnmount(() => {
     display: flex;
     align-items: flex-start;
     gap: 0.8rem;
+    max-width: 100%;
+    overflow-x: auto;
+    word-break: break-word;
 }
 
 .result-icon {
@@ -549,6 +558,11 @@ onBeforeUnmount(() => {
 
 .result-message {
     flex: 1;
+    min-width: 0; /* 防止flex子项撑开容器 */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .celebration-message {
@@ -618,6 +632,8 @@ onBeforeUnmount(() => {
     font-size: 14px;
     overflow-x: auto;
     margin: 0.5rem 0;
+    max-width: 100%;
+    word-break: break-word;
 }
 
 .solution-note {
@@ -801,6 +817,89 @@ onBeforeUnmount(() => {
 
     .monaco-editor-container {
         height: 180px;
+    }
+
+    /* 移动端代码块优化 */
+    .theory-content :deep(pre),
+    .solution-code {
+        max-width: 100%;
+        overflow-x: auto;
+        font-size: 12px;
+        padding: 0.8rem;
+        margin: 0.8rem 0;
+    }
+
+    .theory-content :deep(code) {
+        font-size: 12px;
+        word-break: break-all;
+        white-space: pre-wrap;
+    }
+
+    /* 移动端结果区域优化 */
+    .result-output {
+        padding: 0.8rem;
+        font-size: 13px;
+    }
+
+    .result-message {
+        max-height: 150px;
+        font-size: 13px;
+    }
+
+    /* 移动端编辑器优化 */
+    .code-editor {
+        margin-bottom: 1rem;
+    }
+
+    .editor-header {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .run-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* 移动端反馈按钮优化 */
+    .feedback-options {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .feedback-button {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+        justify-content: center;
+    }
+
+    /* 移动端提示按钮优化 */
+    .hint-button {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* 移动端理论内容优化 */
+    .theory-section,
+    .challenge-section {
+        padding: 1rem;
+    }
+
+    .theory-section h3,
+    .challenge-section h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    /* 移动端标题优化 */
+    .level-title {
+        font-size: 1.5rem;
+    }
+
+    .level-header {
+        margin-bottom: 1.5rem;
     }
 }
 </style>
