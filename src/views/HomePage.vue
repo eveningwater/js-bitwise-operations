@@ -2,11 +2,21 @@
     <div class="home-page">
         <header class="header">
             <div class="logo" @click="toIndexHandler">
-                <span class="logo-text">位运算大师</span>
+                <span class="logo-text">{{ t('home.title') }}<span class="highlight" :lang="currentLanguage">{{ t('home.appName') }}</span></span>
             </div>
-            <div class="nav-buttons">
-                <button class="nav-button" @click="showAbout">关于</button>
-                <button class="github-button" @click="goToGithub">GitHub</button>
+            <div class="header-controls">
+                <div class="language-selector">
+                    <Select
+                        v-model="currentLanguage"
+                        :options="languageOptions"
+                        :show-flag="true"
+                        @change="handleLanguageChange"
+                    />
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-button" @click="showAbout">{{ t('nav.about') }}</button>
+                    <button class="github-button" @click="goToGithub">GitHub</button>
+                </div>
             </div>
         </header>
 
@@ -16,22 +26,22 @@
             </div>
             <div v-else>
                 <section class="welcome-section">
-                    <h1 class="title">欢迎来到<span class="highlight">位运算大师</span></h1>
-                    <p class="subtitle">通过互动游戏掌握 JavaScript 位运算</p>
+                    <h1 class="title">{{ t('home.title') }}<span class="highlight" :lang="currentLanguage">{{ t('home.appName') }}</span></h1>
+                    <p class="subtitle">{{ t('home.subtitle') }}</p>
                     <div class="progress-container">
                         <div class="progress-bar">
                             <div class="progress-fill" :style="{ width: completionPercentage + '%' }"></div>
                         </div>
-                        <div class="progress-text">完成进度: {{ completionPercentage }}%</div>
+                        <div class="progress-text">{{ t('home.progressText') }}: {{ completionPercentage }}%</div>
                     </div>
                     <div class="action-buttons">
-                        <button class="cta-button" @click="scrollToLevels">开始学习</button>
-                        <button class="reset-button" @click="confirmResetProgress">重置进度</button>
+                        <button class="cta-button" @click="scrollToLevels">{{ t('home.startLearning') }}</button>
+                        <button class="reset-button" @click="confirmResetProgress">{{ t('home.resetProgress') }}</button>
                     </div>
                 </section>
 
                 <section id="levels" class="levels-section">
-                    <h2 class="section-title">学习关卡</h2>
+                    <h2 class="section-title">{{ t('home.levelsTitle') }}</h2>
                     <div class="levels-grid">
                         <LevelCard v-for="level in levels" :key="level.id" :level="level" @select="selectLevel" />
                     </div>
@@ -40,11 +50,11 @@
                 <!-- 重置进度确认对话框 -->
                 <div class="modal" v-if="showResetConfirm">
                     <div class="modal-content">
-                        <h3>确认重置</h3>
-                        <p>你确定要重置所有学习进度吗？此操作不可撤销。</p>
+                        <h3>{{ t('home.resetConfirmTitle') }}</h3>
+                        <p>{{ t('home.resetConfirmMessage') }}</p>
                         <div class="modal-buttons">
-                            <button class="cancel-button" @click="showResetConfirm = false">取消</button>
-                            <button class="confirm-button" @click="doResetProgress">确认重置</button>
+                            <button class="cancel-button" @click="showResetConfirm = false">{{ t('home.cancel') }}</button>
+                            <button class="confirm-button" @click="doResetProgress">{{ t('home.confirm') }}</button>
                         </div>
                     </div>
                 </div>
@@ -52,7 +62,7 @@
         </main>
 
         <footer class="footer">
-            <p>© {{ new Date().getFullYear() }} 位运算大师 | 一个互动式 JavaScript 位运算学习平台</p>
+            <p>© {{ new Date().getFullYear() }} {{ t('home.appName') }} | {{ t('home.subtitle') }}</p>
         </footer>
     </div>
 </template>
@@ -62,15 +72,37 @@ import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import AboutPage from '../components/AboutPage.vue';
 import LevelCard from '../components/LevelCard.vue';
-import { levelsData } from '../data/levels';
+import Select from '../components/Select.vue';
+import { createLevelsData } from '../data/levels';
 import { userProgress, isLevelCompleted, getCompletedLevels, resetProgress } from '../services/progressService';
+import { useLanguage, languages, type Language } from '../i18n';
 
 const router = useRouter();
+const { currentLang, setLanguage, t } = useLanguage();
 const showingAbout = ref(false);
 const showResetConfirm = ref(false);
 
+// 语言选择器
+const currentLanguage = computed({
+    get: () => currentLang.value,
+    set: (value: Language) => setLanguage(value)
+});
+
+const languageOptions = computed(() => {
+    return Object.entries(languages).map(([value, lang]) => ({
+        value,
+        name: lang.name,
+        flag: lang.flag
+    }));
+});
+
+const handleLanguageChange = (lang: string | number) => {
+    setLanguage(lang as Language);
+};
+
 // 动态计算关卡完成状态
 const levels = computed(() => {
+    const levelsData = createLevelsData();
     return levelsData.map(level => ({
         ...level,
         completed: isLevelCompleted(level.id)
@@ -80,6 +112,7 @@ const levels = computed(() => {
 // 计算完成百分比
 const completionPercentage = computed(() => {
     const completedCount = getCompletedLevels().length;
+    const levelsData = createLevelsData();
     const totalLevels = levelsData.length;
     return Math.round((completedCount / totalLevels) * 100) || 0;
 });
@@ -153,6 +186,31 @@ function goToGithub() {
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+    .language-selector {
+        flex: 1;
+        max-width: 150px;
+        height: 36px; /* 与按钮高度保持一致 */
+        display: flex;
+        align-items: center;
+    }
+
+    /* 移动端语言选择器优化 */
+    @media (max-width: 768px) {
+        .language-selector {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 42px; /* 与移动端按钮高度保持一致 */
+        }
+    }
 
 .nav-button {
     background: transparent;
@@ -330,6 +388,18 @@ function goToGithub() {
     -webkit-text-fill-color: transparent;
 }
 
+/* 英文语言时添加左间距 */
+.highlight[lang="en"],
+.highlight[lang="en-US"] {
+    margin-left: 0.5rem;
+}
+
+/* 中文语言时不添加左间距 */
+.highlight[lang="zh"],
+.highlight[lang="zh-CN"] {
+    margin-left: 0;
+}
+
 .subtitle {
     font-size: 1.5rem;
     margin-bottom: 2.5rem;
@@ -391,20 +461,35 @@ function goToGithub() {
         font-size: 1.5rem;
     }
 
+    .header-controls {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .language-selector {
+        width: 100%;
+        max-width: 200px;
+        order: 1;
+    }
+
     .nav-buttons {
         display: flex;
-        gap: 0.5rem;
+        gap: 0.8rem;
         width: 100%;
         justify-content: center;
+        order: 2;
     }
 
     .nav-button,
     .github-button {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
         margin-left: 0;
         flex: 1;
-        max-width: 120px;
+        max-width: 140px;
+        border-radius: 10px;
     }
 
     .main-content {
@@ -512,11 +597,20 @@ function goToGithub() {
         font-size: 1.3rem;
     }
 
+    .header-controls {
+        gap: 0.8rem;
+    }
+
+    .language-selector {
+        max-width: 180px;
+    }
+
     .nav-button,
     .github-button {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.85rem;
-        max-width: 100px;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        max-width: 120px;
+        border-radius: 8px;
     }
 
     .title {
@@ -539,6 +633,22 @@ function goToGithub() {
 
     .levels-grid {
         gap: 1rem;
+    }
+
+    .header-controls {
+        gap: 0.6rem;
+    }
+
+    .language-selector {
+        max-width: 160px;
+        padding: 0.4rem;
+    }
+
+    .nav-button,
+    .github-button {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+        max-width: 110px;
     }
 }
 </style>

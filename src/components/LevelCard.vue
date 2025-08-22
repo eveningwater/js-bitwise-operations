@@ -4,12 +4,16 @@
         <div class="level-name">{{ level.name }}</div>
         <div class="level-status" :class="{ 'completed-status': level.completed }">
             <span class="status-icon">{{ level.completed ? '✓' : '○' }}</span>
-            <span>{{ level.completed ? '已完成' : '未完成' }}</span>
+            <span>{{ level.completed ? t('level.completed') : t('level.notCompleted') }}</span>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { useLanguage } from '../i18n';
+
+const { t } = useLanguage();
+
 defineProps<{
     level: {
         id?: number;

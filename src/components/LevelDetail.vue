@@ -3,9 +3,9 @@
         <div class="level-header">
             <h2 class="level-title">{{ currentLevel.name }}</h2>
             <div class="level-progress">
-                <span>关卡 {{ currentLevel.id }}/{{ totalLevels }}</span>
+                <span>{{ t('level.level') }} {{ currentLevel.id }}/{{ totalLevels }}</span>
                 <div class="completion-badge" v-if="isLevelCompleted(currentLevel.id)">
-                    <span class="badge-icon">✓</span> 已完成
+                    <span class="badge-icon">✓</span> {{ t('level.completed') }}
                 </div>
             </div>
         </div>
@@ -13,13 +13,13 @@
         <div class="level-content" :data-mobile-view="mobileView">
             <!-- 理论知识部分 -->
             <div class="theory-section">
-                <h3>知识点</h3>
+                <h3>{{ t('level.theory') }}</h3>
                 <div class="theory-content" v-html="highlightedTheory"></div>
             </div>
 
             <!-- 挑战部分 -->
             <div class="challenge-section">
-                <h3>挑战</h3>
+                <h3>{{ t('level.challenge') }}</h3>
                 <div class="challenge-description">
                     {{ currentLevel.challenge }}
                 </div>
@@ -29,10 +29,10 @@
                     <div class="editor-header">
                         <span>JavaScript</span>
                         <div class="editor-actions">
-                            <button class="reset-code-button" @click="resetCode" title="重置代码">
+                            <button class="reset-code-button" @click="resetCode" :title="t('level.resetCode')">
                                 ↺
                             </button>
-                            <button class="run-button" @click="runCode">运行代码</button>
+                            <button class="run-button" @click="runCode">{{ t('level.runCode') }}</button>
                         </div>
                     </div>
 
@@ -53,13 +53,13 @@
 
                 <!-- 运行结果 -->
                 <div class="result-section" v-if="hasRun">
-                    <h4>运行结果</h4>
+                    <h4>{{ t('level.runResult') }}</h4>
                     <div class="result-output" :class="{ 'result-success': isCorrect, 'result-error': !isCorrect }">
                         <div class="result-icon">{{ isCorrect ? '✓' : '✗' }}</div>
                         <div class="result-message">
                             {{ resultMessage }}
                             <div v-if="isCorrect" class="celebration-message">
-                                🎉 太棒了！你已经掌握了这个概念！
+                                {{ t('level.greatJob') }}
                             </div>
                         </div>
                     </div>
@@ -67,30 +67,30 @@
 
                 <!-- 反馈系统 -->
                 <div class="feedback-section" v-if="hasRun && !isCorrect">
-                    <h4>需要帮助？</h4>
+                    <h4>{{ t('level.needHelp') }}</h4>
                     <div class="feedback-options">
                         <button class="feedback-button" @click="showHint = true">
-                            <span class="feedback-icon">💡</span> 查看提示
+                            <span class="feedback-icon">💡</span> {{ t('level.viewHint') }}
                         </button>
                         <button class="feedback-button" @click="showSolution = !showSolution">
-                            <span class="feedback-icon">📝</span> {{ showSolution ? '隐藏解答' : '查看解答' }}
+                            <span class="feedback-icon">📝</span> {{ showSolution ? t('level.hideSolution') : t('level.viewSolution') }}
                         </button>
                     </div>
                     <div class="solution-content" v-if="showSolution">
-                        <h5>参考解答</h5>
+                        <h5>{{ t('level.referenceSolution') }}</h5>
                         <pre
                             class="solution-code"><code class="language-javascript" v-html="highlightedSolution"></code></pre>
-                        <div class="solution-note">记住，理解概念比记忆代码更重要！</div>
+                        <div class="solution-note">{{ t('level.solutionNote') }}</div>
                     </div>
                 </div>
 
                 <!-- 提示部分 -->
                 <div class="hint-section">
                     <button class="hint-button" @click="showHint = !showHint">
-                        <span class="hint-icon">💡</span> {{ showHint ? '隐藏提示' : '显示提示' }}
+                        <span class="hint-icon">💡</span> {{ showHint ? t('level.hideHint') : t('level.viewHint') }}
                     </button>
                     <div class="hint-content" v-if="showHint">
-                        <div class="hint-header">提示</div>
+                        <div class="hint-header">{{ t('level.hint') }}</div>
                         <div class="hint-text">{{ currentLevel.hint }}</div>
                     </div>
                 </div>
@@ -100,25 +100,25 @@
         <!-- 移动端切换视图按钮 -->
         <div class="mobile-view-toggle">
             <button :class="['toggle-button', { active: mobileView === 'theory' }]" @click="mobileView = 'theory'">
-                知识点
+                {{ t('level.theory') }}
             </button>
             <button :class="['toggle-button', { active: mobileView === 'challenge' }]"
                 @click="mobileView = 'challenge'">
-                挑战
+                {{ t('level.challenge') }}
             </button>
         </div>
 
         <div class="level-navigation">
             <button class="nav-button prev-button" :disabled="currentLevel.id === 1" @click="navigateToPrevious">
-                上一关
+                {{ t('level.previousLevel') }}
             </button>
             <button class="nav-button home-button" @click="navigateToHome">
-                返回首页
+                {{ t('level.returnHome') }}
             </button>
             <button class="nav-button next-button"
                 :disabled="currentLevel.id === totalLevels || !isLevelCompleted(currentLevel.id)"
                 @click="navigateToNext">
-                {{ isLevelCompleted(currentLevel.id) ? '下一关' : '完成当前关卡以继续' }}
+                {{ isLevelCompleted(currentLevel.id) ? t('level.nextLevel') : t('level.completeCurrentToContinue') }}
             </button>
         </div>
     </div>
@@ -127,7 +127,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch, nextTick, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
-import { levelsData } from '../data/levels';
+import { createLevelsData } from '../data/levels';
 import { completeLevel, isLevelCompleted, setCurrentLevel } from '../services/progressService';
 import { evalLike } from '../utils';
 import Editor from './Editor.vue';
@@ -137,10 +137,14 @@ import 'highlight.js/styles/atom-one-dark.css';
 import { isFunction } from 'lodash-es'; // 引入 lodash 的防抖函数
 import { parseStr } from 'ew-responsive-store';
 import { parseStrType } from 'ew-responsive-store/typings/core/enum';
+import { useLanguage } from '../i18n';
 
 
 // 注册JavaScript语言到highlight.js
 hljs.registerLanguage('javascript', javascript);
+
+// 使用国际化
+const { t } = useLanguage();
 
 // 定义属性
 const props = defineProps<{
@@ -151,9 +155,13 @@ const props = defineProps<{
 const router = useRouter();
 
 // 计算属性
-const totalLevels = computed(() => levelsData.length);
+const totalLevels = computed(() => {
+    const levelsData = createLevelsData();
+    return levelsData.length;
+});
 
 const currentLevel = computed(() => {
+    const levelsData = createLevelsData();
     const level = levelsData.find(l => l.id === props.levelId) || levelsData[0];
     return level;
 });
@@ -297,20 +305,20 @@ const runCode = () => {
         isCorrect.value = allPassed;
 
         if (allPassed) {
-            resultMessage.value = '恭喜！你的代码通过了所有测试用例！';
+            resultMessage.value = t('level.congratulations');
             // 标记关卡为已完成
             completeLevel(props.levelId, code.value);
         } else {
             const failedTest = testResults.find(result => !result!.passed);
             if (failedTest && 'error' in failedTest) {
-                resultMessage.value = `代码执行错误: ${failedTest.error}`;
+                resultMessage.value = `${t('level.codeError')}: ${failedTest.error}`;
             } else if (failedTest) {
-                resultMessage.value = `测试未通过: 输入 ${failedTest.input}, 期望 ${failedTest.expected}, 实际 ${failedTest.actual}`;
+                resultMessage.value = `${t('level.testFailed')}: ${t('level.input')} ${failedTest.input}, ${t('level.expected')} ${failedTest.expected}, ${t('level.actual')} ${failedTest.actual}`;
             }
         }
     } catch (error) {
         isCorrect.value = false;
-        resultMessage.value = `代码执行错误: ${error instanceof Error ? error.message : String(error)}`;
+        resultMessage.value = `${t('level.codeError')}: ${error instanceof Error ? error.message : String(error)}`;
     }
 };
 

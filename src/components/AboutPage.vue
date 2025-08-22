@@ -1,33 +1,31 @@
 <template>
     <div class="about-page">
-        <h1 class="about-title">关于位运算</h1>
+        <h1 class="about-title">{{ t('about.title') }}</h1>
 
         <div class="about-section">
-            <h2>什么是位运算？</h2>
+            <h2>{{ t('about.whatIsBitwise') }}</h2>
             <p>
-                位运算是直接对二进制位进行操作的运算。在JavaScript中，位运算可以用于处理整数的二进制表示，
-                执行效率高，在特定场景下能够大幅提升性能。
+                {{ t('about.whatIsBitwiseDesc1') }}
             </p>
             <p>
-                所有的数字在计算机内部都是以二进制形式存储的，位运算直接操作这些二进制位，
-                因此在某些场景下比普通的算术运算更高效。
+                {{ t('about.whatIsBitwiseDesc2') }}
             </p>
         </div>
 
         <div class="about-section">
-            <h2>JavaScript中的位运算符</h2>
+            <h2>{{ t('about.operatorsTitle') }}</h2>
 
             <div class="operator-card">
                 <div class="operator-symbol">&</div>
                 <div class="operator-info">
-                    <h3>按位与（AND）</h3>
-                    <p>对两个操作数的每一位执行与操作。只有两个位都为1时，结果才为1，否则为0。</p>
+                    <h3>{{ t('about.andOperator') }}</h3>
+                    <p>{{ t('about.andDesc') }}</p>
                     <div class="operator-example">
                         <code>5 & 3 = 1</code>
                         <div class="binary-explanation">
                             <div>5 = 101</div>
                             <div>3 = 011</div>
-                            <div>& = 001 (十进制的1)</div>
+                            <div>& = 001 ({{ t('common.decimal') }} 1)</div>
                         </div>
                     </div>
                 </div>
@@ -36,14 +34,14 @@
             <div class="operator-card">
                 <div class="operator-symbol">|</div>
                 <div class="operator-info">
-                    <h3>按位或（OR）</h3>
-                    <p>对两个操作数的每一位执行或操作。只要有一个位为1，结果就为1，否则为0。</p>
+                    <h3>{{ t('about.orOperator') }}</h3>
+                    <p>{{ t('about.orDesc') }}</p>
                     <div class="operator-example">
                         <code>5 | 3 = 7</code>
                         <div class="binary-explanation">
                             <div>5 = 101</div>
                             <div>3 = 011</div>
-                            <div>| = 111 (十进制的7)</div>
+                            <div>| = 111 ({{ t('common.decimal') }} 7)</div>
                         </div>
                     </div>
                 </div>
@@ -52,14 +50,14 @@
             <div class="operator-card">
                 <div class="operator-symbol">^</div>
                 <div class="operator-info">
-                    <h3>按位异或（XOR）</h3>
-                    <p>对两个操作数的每一位执行异或操作。两个位不同时，结果为1，相同时为0。</p>
+                    <h3>{{ t('about.xorOperator') }}</h3>
+                    <p>{{ t('about.xorDesc') }}</p>
                     <div class="operator-example">
                         <code>5 ^ 3 = 6</code>
                         <div class="binary-explanation">
                             <div>5 = 101</div>
                             <div>3 = 011</div>
-                            <div>^ = 110 (十进制的6)</div>
+                            <div>^ = 110 ({{ t('common.decimal') }} 6)</div>
                         </div>
                     </div>
                 </div>
@@ -68,13 +66,13 @@
             <div class="operator-card">
                 <div class="operator-symbol">~</div>
                 <div class="operator-info">
-                    <h3>按位非（NOT）</h3>
-                    <p>对操作数的每一位执行非操作，即将0变为1，将1变为0。</p>
+                    <h3>{{ t('about.notOperator') }}</h3>
+                    <p>{{ t('about.notDesc') }}</p>
                     <div class="operator-example">
                         <code>~5 = -6</code>
                         <div class="binary-explanation">
                             <div>5 = 00000000000000000000000000000101</div>
-                            <div>~ = 11111111111111111111111111111010 (十进制的-6)</div>
+                            <div>~ = 11111111111111111111111111111010 ({{ t('common.decimal') }} -6)</div>
                         </div>
                     </div>
                 </div>
@@ -83,13 +81,13 @@
             <div class="operator-card">
                 <div class="operator-symbol">&lt;&lt;</div>
                 <div class="operator-info">
-                    <h3>左移</h3>
-                    <p>将操作数的所有位向左移动指定的位数，右侧补0。</p>
+                    <h3>{{ t('about.leftShift') }}</h3>
+                    <p>{{ t('about.leftShiftDesc') }}</p>
                     <div class="operator-example">
                         <code>5 &lt;&lt; 1 = 10</code>
                         <div class="binary-explanation">
                             <div>5 = 101</div>
-                            <div> 5 &lt;&lt; 1=1010 (十进制的10)</div>
+                            <div> 5 &lt;&lt; 1=1010 ({{ t('common.decimal') }} 10)</div>
                         </div>
                     </div>
                 </div>
@@ -98,13 +96,13 @@
             <div class="operator-card">
                 <div class="operator-symbol">&gt;&gt;</div>
                 <div class="operator-info">
-                    <h3>右移</h3>
-                    <p>将操作数的所有位向右移动指定的位数，左侧补符号位（正数补0，负数补1）。</p>
+                    <h3>{{ t('about.rightShift') }}</h3>
+                    <p>{{ t('about.rightShiftDesc') }}</p>
                     <div class="operator-example">
                         <code>5 >> 1 = 2</code>
                         <div class="binary-explanation">
                             <div>5 = 101</div>
-                            <div>&gt;&gt; 1 = 010 (十进制的2)</div>
+                            <div>&gt;&gt; 1 = 010 ({{ t('common.decimal') }} 2)</div>
                         </div>
                     </div>
                 </div>
@@ -113,13 +111,13 @@
             <div class="operator-card">
                 <div class="operator-symbol">&gt;&gt;&gt;</div>
                 <div class="operator-info">
-                    <h3>无符号右移</h3>
-                    <p>将操作数的所有位向右移动指定的位数，左侧始终补0。</p>
+                    <h3>{{ t('about.unsignedRightShift') }}</h3>
+                    <p>{{ t('about.unsignedRightShiftDesc') }}</p>
                     <div class="operator-example">
                         <code>-5 &gt;&gt;&gt; 1 = 2147483645</code>
                         <div class="binary-explanation">
                             <div>-5 = 11111111111111111111111111111011</div>
-                            <div>&gt;&gt;&gt; 1 = 01111111111111111111111111111101 (十进制的2147483645)</div>
+                            <div>&gt;&gt;&gt; 1 = 01111111111111111111111111111101 ({{ t('common.decimal') }} 2147483645)</div>
                         </div>
                     </div>
                 </div>
@@ -127,49 +125,50 @@
         </div>
 
         <div class="about-section">
-            <h2>位运算的应用场景</h2>
+            <h2>{{ t('about.applicationsTitle') }}</h2>
             <ul class="application-list">
                 <li>
-                    <strong>权限控制：</strong> 使用位掩码表示不同的权限，通过位运算快速检查和修改权限。
+                    <strong>{{ t('about.permissionControl') }}</strong>
                 </li>
                 <li>
-                    <strong>图形处理：</strong> 在图像处理中，位运算可用于颜色混合、像素操作等。
+                    <strong>{{ t('about.graphicsProcessing') }}</strong>
                 </li>
                 <li>
-                    <strong>性能优化：</strong> 在某些场景下，使用位运算替代乘除法可以提高性能。例如，<code>x &lt;&lt; 1</code> 等价于
-                    <code>x * 2</code>。
+                    <strong>{{ t('about.performanceOptimization') }}</strong>
                 </li>
                 <li>
-                    <strong>数据压缩：</strong> 利用位运算可以在有限的空间内存储更多信息。
+                    <strong>{{ t('about.dataCompression') }}</strong>
                 </li>
                 <li>
-                    <strong>加密算法：</strong> 许多加密算法使用位运算作为基本操作。
+                    <strong>{{ t('about.encryption') }}</strong>
                 </li>
                 <li>
-                    <strong>游戏开发：</strong> 在游戏开发中，位运算常用于碰撞检测、状态管理等。
+                    <strong>{{ t('about.gameDevelopment') }}</strong>
                 </li>
             </ul>
         </div>
 
         <div class="about-section">
-            <h2>关于本应用</h2>
+            <h2>{{ t('about.aboutAppTitle') }}</h2>
             <p>
-                「位运算大师」是一个互动式学习平台，旨在帮助前端开发者和JavaScript学习者掌握位运算的概念和应用。
-                通过一系列精心设计的关卡，你将逐步学习各种位运算符的用法和实际应用场景。
+                {{ t('about.aboutAppDesc1') }}
             </p>
             <p>
-                每个关卡都包含理论知识讲解、编程挑战和即时反馈，帮助你巩固所学知识。
-                完成所有关卡后，你将能够自信地在实际项目中应用位运算技巧。
+                {{ t('about.aboutAppDesc2') }}
             </p>
         </div>
 
         <div class="back-button-container">
-            <button class="back-button" @click="$emit('back')">返回主页</button>
+            <button class="back-button" @click="$emit('back')">{{ t('about.backToHome') }}</button>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { useLanguage } from '../i18n';
+
+const { t } = useLanguage();
+
 defineEmits<{
     (e: 'back'): void
 }>();
