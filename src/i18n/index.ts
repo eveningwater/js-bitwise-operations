@@ -1,4 +1,5 @@
 import { useStorage } from 'ew-responsive-store';
+import { isObject, isString } from 'lodash-es';
 
 // 语言类型定义
 export type Language = 'zh-CN' | 'en-US';
@@ -491,6 +492,9 @@ export const translations = {
     }
 };
 
+export type Translations = typeof translations;
+export type TranslationKey = keyof Translations;
+
 // 本地存储键名
 const LANGUAGE_STORAGE_KEY = "js-bitwise-operations-language";
 
@@ -523,15 +527,14 @@ export function t(key: string, lang: Language = getCurrentLanguage()): string {
     let value: any = translations[lang];
     
     for (const k of keys) {
-        if (value && typeof value === 'object' && k in value) {
-            value = value[k];
+        if (isObject(value) && k in value) {
+            value = value[k as keyof typeof value];
         } else {
-            // 如果找不到翻译，返回key本身
             return key;
         }
     }
     
-    return typeof value === 'string' ? value : key;
+    return isString(value) ? value : key;
 }
 
 // 创建响应式的语言状态
